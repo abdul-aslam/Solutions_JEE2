@@ -1,0 +1,48 @@
+Trainee:1
+--------
+121
+James
+2431232200
+xyz@yahoo.com
+male
+30
+Trainee:2
+--------
+125
+Mary
+2531233300
+abc@yahoo.com
+female
+25
+Trainee:3
+--------
+124
+Adam
+2631233300
+scr@yahoo.com
+male
+35
+Get details of traineeId:121
+----------------------------
+121
+James
+2431232200
+xyz@yahoo.com
+male
+30
+Get trainee details of gender=male
+----------------------------------
+gender 01
+121
+James
+2431232200
+xyz@yahoo.com
+male
+30
+gender 11
+124
+Adam
+2631233300
+scr@yahoo.com
+male
+35
