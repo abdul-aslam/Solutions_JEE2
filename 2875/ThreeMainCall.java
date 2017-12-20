@@ -12,7 +12,7 @@ public class ThreeMainCall {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		//Reverse the string
-		System.out.println("Enter the string to be reversed ");
+		System.out.println("Enter the string to be reversed: ");
 		String input = br.readLine();
 		System.out.println("Reversed string: " + obj.reverseString(input));
 		
@@ -25,35 +25,35 @@ public class ThreeMainCall {
 		if(obj.searchString(inStr, srchStr)) 
 		   System.out.println(srchStr + " is available in the String");
 		else
-			System.out.println(srchStr + " is not available in the String");
+		   System.out.println(srchStr + " is not available in the String");
 		
 		// Linear Search
-        System.out.println("Enter any 10 words: ");
+		System.out.println("Enter any 10 words: ");
 
-        String strarr [] = new String[10];
-                int i;
-        for (i = 0; i<10; i++)
-        {
-            strarr[i] = br.readLine();
-        }
-        System.out.println("Enter the word to be searched: ");
-        String search = br.readLine();
-        if (obj.linearsearch(strarr, search)) 
-        	System.out.println(search +" is available in the listed words" );
-        else
-        	System.out.println(search +" is not available in the listed words" );
+		String strarr [] = new String[10];
+
+		for (int i = 0; i<10; i++)
+		{
+			strarr[i] = br.readLine();
+		}
+		System.out.println("Enter the word to be searched: ");
+		String search = br.readLine();
+		if (obj.linearsearch(strarr, search)) 
+			System.out.println(search +" is available in the listed words" );
+		else
+			System.out.println(search +" is not available in the listed words" );
         
-        //Replace string
-        System.out.println("Enter the string : ");
-        String str = br.readLine();
-        System.out.println("Enter the word to be searched : ");
-        String sStr = br.readLine();
-        System.out.println("Enter the word to be replaced : ");
-        String rStr = br.readLine();
+		//Replace string
+		System.out.println("Enter the string : ");
+		String str = br.readLine();
+		System.out.println("Enter the word to be searched : ");
+		String sStr = br.readLine();
+		System.out.println("Enter the word to be replaced : ");
+		String rStr = br.readLine();
         
-        System.out.println("Updated String is :" + obj.replaceString(str, sStr, rStr));
+		System.out.println("Updated String is :" + obj.replaceString(str, sStr, rStr));
         
-        br.close();
+		br.close();
 	}
 
 }
