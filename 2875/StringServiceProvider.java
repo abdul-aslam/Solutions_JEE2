@@ -8,7 +8,7 @@ public class StringServiceProvider {
    @SuppressWarnings("null")
 
 	private String str;
-    private boolean flag = false; 
+   	private boolean flag = false; 
    
 	StringServiceProvider(){
 		str = null;
@@ -25,6 +25,7 @@ public class StringServiceProvider {
 		
 	}
 	
+	//Search the word
 	public boolean searchString(String inString, String srchString) {
 		if(inString.contains(srchString)) 
 			return true;
@@ -32,6 +33,7 @@ public class StringServiceProvider {
 			return false;
 	}
 	
+	//Linear search
 	public boolean linearsearch(String[] inString, String srchString) {
     
           for(int i=0;i<10;i++) {
@@ -44,13 +46,13 @@ public class StringServiceProvider {
           return flag;
 	}
 	
-	
+	//Replace the given word
 	public String replaceString(String str,String srchStr, String rplStr) {
 		
 		return str.replaceAll(srchStr, rplStr);
 	}
 		
-	}
+}
 	
 	
 
