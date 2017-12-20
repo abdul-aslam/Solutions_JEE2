@@ -1,0 +1,19 @@
+package com.htc.Day2.main;
+
+public class StringServiceProvider {
+    
+	public String getReverse (String name) {
+		int length = name.length();
+		System.out.println(" length"+ length);
+		String reverse = "" ;
+		for (int i =length-1; i>= 0; i--) {
+			reverse = reverse+name.charAt(i);
+			
+		}
+			
+		System.out.println(" Reverse Name of  " + name + "  is "+ reverse);
+		return reverse;
+	}
+	
+		
+}
