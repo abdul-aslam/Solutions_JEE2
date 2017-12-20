@@ -1,0 +1,104 @@
+package com.htc.Day2.main;
+
+
+import java.util.Arrays;
+import java.util.Date;
+
+public class Batch {
+	private String batchCode;
+	private Date startDate;
+	private Date enddate;
+	private Trainee[] trainees;
+	
+	
+	
+	public String getBatchCode() {
+		return batchCode;
+	}
+	public void setBatchCode(String batchCode) {
+		this.batchCode = batchCode;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEnddate() {
+		return enddate;
+	}
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+	public Trainee[] getTrainees() {
+		return trainees;
+	}
+	public void setTrainees(Trainee[] trainees) {
+		this.trainees = trainees;
+	}
+	
+	public Batch(String batchCode, Date startDate, Date enddate, Trainee[] trainees) {
+		super();
+		this.batchCode = batchCode;
+		this.startDate = startDate;
+		this.enddate = enddate;
+		this.trainees = trainees;
+	}
+
+	public Batch() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Batch [batchCode=" + batchCode + ", startDate=" + startDate + ", enddate=" + enddate + ", trainees="
+				+ Arrays.toString(trainees) + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((batchCode == null) ? 0 : batchCode.hashCode());
+		result = prime * result + ((enddate == null) ? 0 : enddate.hashCode());
+		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
+		result = prime * result + Arrays.hashCode(trainees);
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Batch other = (Batch) obj;
+		if (batchCode == null) {
+			if (other.batchCode != null)
+				return false;
+		} else if (!batchCode.equals(other.batchCode))
+			return false;
+		if (enddate == null) {
+			if (other.enddate != null)
+				return false;
+		} else if (!enddate.equals(other.enddate))
+			return false;
+		if (startDate == null) {
+			if (other.startDate != null)
+				return false;
+		} else if (!startDate.equals(other.startDate))
+			return false;
+		if (!Arrays.equals(trainees, other.trainees))
+			return false;
+		return true;
+	}
+
+	Trainee  tra = new Trainee();
+	public int getTraineeId(int traineeid) {
+		traineeid = 123+tra.getTraineeId();
+		return traineeid;
+	}
+	
+}
