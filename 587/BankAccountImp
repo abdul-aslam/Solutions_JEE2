@@ -1,0 +1,12 @@
+package com.htc.Day2.main;
+
+public class BankAccountImp {
+
+	public static void main(String[] args) {
+		
+    BankAccount accinfo = new BankAccount("P100","Primary");
+    
+    System.out.println("A/C no "+ accinfo.getAccountNo() +"Account Name"+ accinfo.getAccountName()+ "Balance"+accinfo.accountBalance);
+	}
+
+}
