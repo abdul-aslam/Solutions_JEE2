@@ -1,0 +1,81 @@
+package com.sample;
+
+public class Project {
+
+	private int projectID;
+	private String projectName;
+	private String projectHead;
+	private int noOfResources;
+	
+	public int getProjectID() {
+		return projectID;
+	}
+
+	public void setProjectID(int projectID) {
+		this.projectID = projectID;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public String getProjectHead() {
+		return projectHead;
+	}
+
+	public void setProjectHead(String projectHead) {
+		this.projectHead = projectHead;
+	}
+
+	public int getNoOfResources() {
+		return noOfResources;
+	}
+
+	public void setNoOfResources(int noOfResources) {
+		this.noOfResources = noOfResources;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [projectID=" + projectID + ", projectName="
+				+ projectName + ", projectHead=" + projectHead
+				+ ", noOfResources=" + noOfResources + "]";
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Project p1 = new Project();
+		p1.setProjectID(123);
+		p1.setProjectName("Vehicle Project");
+		p1.setProjectHead("Smith");
+		p1.setNoOfResources(100);
+		
+		Project p2 = new Project();
+		p2.setProjectID(124);
+		p2.setProjectName("Art Project");
+		p2.setProjectHead("John");
+		p2.setNoOfResources(20);
+		
+		Project[] comm = {p1, p2};
+		
+		for (Project e1: comm) {
+			if (e1.getProjectID() == 123) {
+				System.out.println("Project ID: " + e1.getProjectID());
+				System.out.println("Project Name: " + e1.getProjectName());
+				System.out.println("Project Head: " + e1.getProjectHead());
+				System.out.println("Number of Resouces: " + e1.getNoOfResources());
+			} else {
+				System.out.println(e1);
+			}
+					
+			
+		}
+		
+
+	}
+
+}

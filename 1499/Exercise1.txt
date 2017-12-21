@@ -1,0 +1,204 @@
+Exercise 1:
+-----------
+package com.sample;
+
+public class Trainee {
+
+	private int traineeID;
+	private String traineeName;
+	private String ContactNo;
+	private String email;
+	private String gender;
+	private int age;
+
+	public Trainee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Trainee(int traineeID, String traineeName, String contactNo,
+			String email, String gender, int age) {
+		super();
+		this.traineeID = traineeID;
+		this.traineeName = traineeName;
+		ContactNo = contactNo;
+		this.email = email;
+		this.gender = gender;
+		this.age = age;
+	}
+	public int getTraineeID() {
+		return traineeID;
+	}
+	public void setTraineeID(int traineeID) {
+		this.traineeID = traineeID;
+	}
+	public String getTraineeName() {
+		return traineeName;
+	}
+	public void setTraineeName(String traineeName) {
+		this.traineeName = traineeName;
+	}
+	public String getContactNo() {
+		return ContactNo;
+	}
+	public void setContactNo(String contactNo) {
+		ContactNo = contactNo;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Trainee [traineeID=" + traineeID + ", traineeName="
+				+ traineeName + ", ContactNo=" + ContactNo + ", email=" + email
+				+ ", gender=" + gender + ", age=" + age + "]";
+	}
+
+	
+}
+
+
+
+package com.sample;
+
+import java.util.Scanner;
+
+public class Batch {
+	private int batchCode;
+	private String startDate;
+	private String endDate;
+	private Trainee[] tr;
+	
+	
+	public int getBatchCode() {
+		return batchCode;
+	}
+
+
+	public void setBatchCode(int batchCode) {
+		this.batchCode = batchCode;
+	}
+
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+
+	public Trainee[] getTr() {
+		return tr;
+	}
+
+
+	public void setTr(Trainee[] tr) {
+		this.tr = tr;
+	}
+
+	public Trainee getTrainee (int traineeID) throws TraineeNotFoundException {
+		boolean found = false;
+		int i;
+		for (i = 0; i < tr.length; i++) {
+			if (tr[i].getTraineeID() == traineeID) {
+				found = true;
+				break;
+			} 
+		}	
+		if (found == true) {
+			return tr[i];
+		} else {
+			throw new TraineeNotFoundException("Trainee Not Found");
+		}
+	}
+
+	public Trainee[] getTrainees (String gender) {
+		int i;
+		int count = 0;
+
+		for (i = 0; i < tr.length; i++) {
+			if (tr[i].getGender().equals(gender)) {
+				count = count + 1;
+			} 
+		}		
+		
+		Trainee[] tr1 = new Trainee[count];
+		
+		int j = 0;
+				
+		for (i = 0; i < tr.length; i++) {
+			if (tr[i].getGender().equals(gender)) {
+				tr1[j++] = tr[i];
+			} 
+		}		
+		
+		return tr1;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	Trainee[] tr = {new Trainee(1, "AAA","309999999","AA@aa.com","Male",20),
+				  new Trainee(2, "BBB","309888888","BB@aa.com","Female",30),
+				  new Trainee(3, "CCC","309777777","CC@aa.com","Male",40)
+					};
+	
+	Batch b = new Batch();
+	b.setTr(tr);
+	try{
+		System.out.println("Please enter Trainee ID :");
+		Scanner sc = new Scanner(System.in);
+		int traineeID = sc.nextInt();
+
+		Trainee t = b.getTrainee(traineeID);
+		System.out.println("Requested Trainee Details: ");
+		System.out.println(t);
+	} catch (TraineeNotFoundException e) {
+		System.out.println (e.getMessage());
+	}
+
+	Trainee[] tr2 = b.getTrainees("Female");
+
+	System.out.println("Trainees as per gender: ");
+	for (Trainee element: tr2) {
+		System.out.println(element);
+	}
+	
+	}
+}
+
+
+class TraineeNotFoundException extends Exception {
+	TraineeNotFoundException(String ex) {
+		super(ex);
+	}
+}
+

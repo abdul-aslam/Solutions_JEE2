@@ -1,0 +1,62 @@
+package com.sample;
+
+public class BankAccount {
+
+	private String accountNo;
+	private String accountName;
+	private double balance;
+	
+	static int lastAssinedNo = 0; 
+	
+	public BankAccount(String accountNo, String accountName) {
+		super();
+		this.accountNo = accountNo;
+		this.accountName = accountName;
+		this.balance = 1000;
+		lastAssinedNo++;
+	}
+	
+	
+	public BankAccount() {
+		super();
+		// TODO Auto-generated constructor stub
+		lastAssinedNo++;
+	}
+
+
+	public String getAccountNo() {
+		return accountNo;
+	}
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+	public String getAccountName() {
+		return accountName;
+	}
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	@Override
+	public String toString() {
+		return "BankAccount [accountNo=" + accountNo + ", accountName="
+				+ accountName + ", balance=" + balance + "]";
+	}
+	
+	public static void main(String[] args){
+		BankAccount BA1 = new BankAccount("12345", "John Account");
+		BankAccount BA2 = new BankAccount("12346", "Smith Account");
+		BA1.balance = 5000.00;
+		BA2.balance = 2000;		
+		
+		System.out.println(BA1);
+		System.out.println(BA2);
+	}
+	
+}

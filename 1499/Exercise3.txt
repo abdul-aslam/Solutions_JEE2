@@ -1,0 +1,97 @@
+package com.sample;
+
+import java.util.Scanner;
+
+public class StringServiceProvider {
+
+	private String fromString;
+	
+	public StringServiceProvider() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public StringServiceProvider(String fromString) {
+		super();
+		this.fromString = fromString;
+	}
+
+	public String getFromString() {
+		return fromString;
+	}
+
+	public void setFromString(String fromString) {
+		this.fromString = fromString;
+	}
+
+/* method to reverse the String */		
+	public String reverseString () {
+
+		char ch[] = fromString.toCharArray();
+		
+		int len = ch.length;
+		char ch1[] = new char[len];
+		
+		for (int i = (len-1), j = 0; i >= 0; i--, j++) {
+			ch1 [j] = ch[i];
+		}
+		
+		String RevString = String.copyValueOf(ch1);
+		return RevString;
+	}
+
+
+/* method for linear search */
+	public static int linearSearch (String in1, char c) {
+		
+		for (int i =0; i < in1.length(); i++) {
+			if (in1.charAt(i) == c) {
+				return i;
+			}
+		}
+	
+		return -1;
+	
+	}
+	
+/* method for replace a character in String */
+	public static String replaceString (String input, char fromChar, char toChar) {
+		
+		char ch[] = input.toCharArray();
+		char ch1[] = new char[ch.length];
+		
+		for (int i =0; i < ch.length; i++) {
+			if (ch[i] == fromChar) {
+				ch1[i] = toChar;
+			} else {
+				ch1[i] = ch[i];
+			}
+		}
+		return String.copyValueOf(ch1);	
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StringServiceProvider SSP = new StringServiceProvider("Candle");
+
+/* call reverse string method */
+		System.out.println("Reverse String of " + SSP.getFromString() + " is :" + SSP.reverseString());
+
+/* logic for linear search */
+		System.out.println("Please enter the string to be searched");
+		Scanner sc = new Scanner (System.in);
+		String input = sc.next();
+		
+		int position = linearSearch(input, 's');
+		
+		if (position != -1) {
+			System.out.println("Character \'s\' found at position " + position);
+		} else {
+			System.out.println("Character \'s\' not found at position");
+		}
+		
+/* call replace string method */
+		System.out.println("Replace character \'b\' with \'t\' on the String bible  is :" + replaceString("bible",'b','t'));
+	}
+
+}
