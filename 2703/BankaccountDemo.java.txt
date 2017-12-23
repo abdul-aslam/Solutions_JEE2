@@ -1,0 +1,11 @@
+package Assgmt.main;
+
+import Assgmt.Entity.BankAccount;
+
+public class Bankaccountdemo {
+  public static void main(String arg[]) {  
+	BankAccount bank = new BankAccount("21022102","James vasanth");
+    System.out.println(bank);
+  }
+	
+	}

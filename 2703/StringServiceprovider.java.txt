@@ -1,0 +1,34 @@
+package Assgmt.Entity;
+
+
+public class StringServiceProvider {
+    
+	public StringServiceProvider() {
+		super();
+		 TODO Auto-generated constructor stub
+	}
+	
+	public String revstr(String Str) {
+	  String S = ;
+	  
+	  int len =  Str.length();
+	  
+	  for (int i=len-1; i=0; i--)
+	  {
+		 S = S + Str.charAt(i);
+	  }
+	  
+	  
+	  return S;
+	}
+	
+	public int linearsearch(String search, char C) {
+	  	  return search.indexOf(C);
+	}
+	
+   public String rplcstr(String orgstring, String serachablestr, String reaplaceablestr ) {
+	   return orgstring.replace( serachablestr, reaplaceablestr);
+   }
+	
+
+}

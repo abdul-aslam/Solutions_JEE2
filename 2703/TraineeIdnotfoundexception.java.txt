@@ -1,0 +1,12 @@
+package Assgmt.Entity;
+
+public class TraineeIdnotfoundexception extends Throwable {
+
+	public TraineeIdnotfoundexception(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+}

@@ -1,0 +1,22 @@
+package Assgmt.main;
+
+import Assgmt.Entity.Project;
+
+public class ProjectDemo {
+	public static void main(String args[])
+	{
+	 Project project = new Project();
+	 project.setNoOfResources(1);
+	 project.setProjectHead("Head");
+	 project.setProjectId("P0001");
+	 project.setProjectName("Test Project");
+	 
+	 /* print the member variables of project class using the getter method */
+	 
+	 System.out.println(project.getNoOfResources());
+	 System.out.println(project.getProjectHead());
+	 System.out.println(project.getProjectId());
+	 System.out.println(project.getProjectName());
+	}
+
+}

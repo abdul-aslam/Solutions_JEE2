@@ -1,0 +1,85 @@
+package Assgmt.Entity;
+
+public class Project {
+	public String ProjectId;
+	public String ProjectName;
+	public String ProjectHead;
+	public int noOfResources;
+	public Project() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Project(String projectId, String projectName, String projectHead, int noOfResources) {
+		super();
+		ProjectId = projectId;
+		ProjectName = projectName;
+		ProjectHead = projectHead;
+		this.noOfResources = noOfResources;
+	}
+	public String getProjectId() {
+		return ProjectId;
+	}
+	public void setProjectId(String projectId) {
+		ProjectId = projectId;
+	}
+	public String getProjectName() {
+		return ProjectName;
+	}
+	public void setProjectName(String projectName) {
+		ProjectName = projectName;
+	}
+	public String getProjectHead() {
+		return ProjectHead;
+	}
+	public void setProjectHead(String projectHead) {
+		ProjectHead = projectHead;
+	}
+	public int getNoOfResources() {
+		return noOfResources;
+	}
+	public void setNoOfResources(int noOfResources) {
+		this.noOfResources = noOfResources;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ProjectHead == null) ? 0 : ProjectHead.hashCode());
+		result = prime * result + ((ProjectId == null) ? 0 : ProjectId.hashCode());
+		result = prime * result + ((ProjectName == null) ? 0 : ProjectName.hashCode());
+		result = prime * result + noOfResources;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Project other = (Project) obj;
+		if (ProjectHead == null) {
+			if (other.ProjectHead != null)
+				return false;
+		} else if (!ProjectHead.equals(other.ProjectHead))
+			return false;
+		if (ProjectId == null) {
+			if (other.ProjectId != null)
+				return false;
+		} else if (!ProjectId.equals(other.ProjectId))
+			return false;
+		if (ProjectName == null) {
+			if (other.ProjectName != null)
+				return false;
+		} else if (!ProjectName.equals(other.ProjectName))
+			return false;
+		if (noOfResources != other.noOfResources)
+			return false;
+		return true;
+	}
+	
+	
+	
+
+}

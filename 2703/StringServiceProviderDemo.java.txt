@@ -1,0 +1,17 @@
+package Assgmt.main;
+
+import Assgmt.Entity.StringServiceProvider;
+
+public class Stringdemo {
+	public static void main(String args[]) {
+   StringServiceProvider Ss = new StringServiceProvider();
+   String Str = "CTH emoclew";
+String Newstr = Ss.revstr(Str);
+System.out.println(Newstr);
+/* linear search of the string */
+System.out.println(Ss.linearsearch(Newstr, 'l'));
+
+String R = Ss.rplcstr(Newstr,"HTC","HTC GLOBAL SERVICES");
+System.out.println(R);
+}
+}

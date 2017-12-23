@@ -1,0 +1,90 @@
+package Assgmt.main;
+
+
+import Assgmt.Entity.Trainee;
+import Assgmt.Entity.TraineeIdnotfoundexception;
+
+public class Batch 
+{
+ public String batchcode;
+ public String startdate;
+ public String enddate;
+ public Trainee[] trainees;
+ 
+
+ 
+ public Batch() {
+	 batchcode = "B001";
+	 startdate = "12202017";
+	 enddate = "01202018";
+	 
+	 
+	 trainees = new Trainee[3];
+	 
+	 Trainee trainee1 = new Trainee();
+	 trainee1.setTraineeId("T001");
+	 trainee1.setTraineeName("xxxx");
+	 trainee1.setContactNo(248525);
+	 trainee1.setEmailId("xxx@gmail.com");
+	 trainee1.setAge(27);
+	 trainee1.setGender("M");
+	 
+	 Trainee trainee2 = new Trainee();
+	 trainee2.setTraineeName("yyy");
+	 trainee2.setContactNo(248525);
+	 trainee2.setEmailId("yyy@gmail.com");
+	 trainee2.setAge(28);
+	 trainee2.setTraineeId("T002");
+	 trainee2.setGender("M");
+	 
+	 Trainee trainee3 = new Trainee();
+	 trainee3.setTraineeName("zzz");
+	 trainee3.setContactNo(248525);
+	 trainee3.setEmailId("zzz@gmail.com");
+	 trainee3.setAge(28);
+	 trainee3.setTraineeId("T003");
+	 trainee3.setGender("F");
+	 
+	 trainees[0] = trainee1;
+	 trainees[1] = trainee2;
+	 trainees[2] = trainee3;
+	 
+}
+
+public Trainee getTraineeID( String traineeId) throws TraineeIdnotfoundexception{
+	Trainee trainee = new Trainee();
+	for (Trainee traineea : trainees) {
+		if(traineea.getTraineeId().equalsIgnoreCase(traineeId))
+		{
+			return traineea;
+		}
+	}
+	throw new TraineeIdnotfoundexception ("Trainee not found");
+	
+}
+public Trainee[] getGender(String Gender) {
+	Trainee[] FilteredTrainees = new Trainee[3];
+	int i=0;
+	for (Trainee trainee : FilteredTrainees) {
+		if(trainee.getGender().equalsIgnoreCase(Gender))
+		{
+		 FilteredTrainees[i] = trainee;
+		 i++;
+		}
+		
+	} 
+	return FilteredTrainees;
+}
+
+public static void main(String args[]) throws TraineeIdnotfoundexception
+{
+ 
+	Batch B = new Batch();
+	Trainee trainee =B.getTraineeID("T001");
+	System.out.println(trainee);
+}
+} 
+
+ 
+ 
+ 
