@@ -1,10 +1,11 @@
-package assignment;
+package assignment2;
 
 public class BankAccount {
 	
 	private String accountNo;
 	private String accountName;
 	private double balance;
+	static int lastAssignedNo = 0;
 	
 	public BankAccount() {
 		super();
@@ -12,6 +13,7 @@ public class BankAccount {
 
 	public BankAccount(String accountNo, String accountName) {
 		super();
+		lastAssignedNo++;
 		this.accountNo = accountNo;
 		this.accountName = accountName;
 		this.balance = 1000;
