@@ -1,0 +1,80 @@
+package com.Htc.training.Ex1;
+
+public class Trainee {
+	private String traineeId;
+    private String traineeName;
+    private String contactNo;
+    private String emailId;
+    private String gender;
+    private int age;
+    
+    public Trainee() {
+    	
+    }
+    public Trainee(String traineeId, String traineeName, String contactNo, 
+    		       String emailId, String gender, int age) {
+		this.traineeId = traineeId;
+		this.traineeName = traineeName;
+		this.contactNo = contactNo;
+		this.emailId = emailId;
+		this.gender = gender;
+		this.age = age;
+	}
+    public String getTraineeId() //getter method or accessor
+	{
+		return traineeId;
+	}
+    public void setTraineeId(String traineeId)//use to modify ,setter method or mutator method
+	{
+	this.traineeId = traineeId;// this keyword used to refer current object
+	}
+  
+    public String getTraineeName() //getter method or accessor
+	{
+		return traineeName;
+	}
+    public void setTraineeName(String traineeName)//use to modify ,setter method or mutator method
+	{
+	this.traineeName = traineeName;// this keyword used to refer current object
+	}
+    
+    public String getcontactNo() //getter method or accessor
+	{
+		return contactNo;
+	}
+    public void setcontactNo(String contactNo)//use to modify ,setter method or mutator method
+	{
+	this.contactNo = contactNo;// this keyword used to refer current object
+	}
+    
+    public String getemailId() //getter method or accessor
+	{
+		return emailId;
+	}
+    public void setemailId(String emailId)//use to modify ,setter method or mutator method
+	{
+	this.emailId = emailId;// this keyword used to refer current object
+	}
+
+    public String getgender() //getter method or accessor
+	{
+		return gender;
+	}
+    public void setgender(String gender)//use to modify ,setter method or mutator method
+	{
+	this.gender = gender;// this keyword used to refer current object
+	}
+    
+    public int getage() //getter method or accessor
+   	{
+   		return age;
+   	}
+       public void setage(int age)//use to modify ,setter method or mutator method
+   	{
+   	this.age = age;// this keyword used to refer current object
+   	}
+    
+} 
+
+
+
