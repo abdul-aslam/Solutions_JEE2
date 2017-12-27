@@ -1,0 +1,64 @@
+package com.htc.java;
+// Exercise No : 4
+public class BankAccount {
+	String AccountNo;
+	String AccountName;
+    double balance;
+	
+	 BankAccount() {
+		this.AccountNo = AccountNo;
+		this.AccountName = AccountName;
+		this.balance = 1000;
+	}
+	
+	BankAccount(String AccountNo, String AccountName) {
+		this();
+		this.AccountNo = AccountNo;
+		this.AccountName = AccountName;
+		
+	}
+
+	public String getAccountNo() {
+		return AccountNo;
+	}
+
+	public void setAccountNo(String accountNo) {
+		AccountNo = accountNo;
+	}
+
+	public String getAccountName() {
+		return AccountName;
+	}
+
+	public void setAccountName(String accountName) {
+		AccountName = accountName;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance() {
+		this.balance =  balance;
+	}
+
+
+	public static void main(String[] args) {
+		
+		BankAccount account1 = new BankAccount();
+		account1.setAccountName("xx");
+		account1.setAccountNo("1111");
+		
+		System.out.println("account1: Account Name :"+account1.getAccountName());
+		System.out.println("account1: Account No :"+account1.getAccountNo());
+		System.out.println("account1: Balance :"+account1.getBalance());
+		
+		BankAccount account2 = new BankAccount("2222","yy");
+		System.out.println("account2: Account Name :"+account2.getAccountName());
+		System.out.println("account2: Account No :"+account2.getAccountNo());
+		System.out.println("account2: Balance :"+account2.getBalance());
+		
+
+	}
+
+}
+
