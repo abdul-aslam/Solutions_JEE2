@@ -1,0 +1,208 @@
+package com.htc.exec.myjava;
+
+public class Bank {
+	private int bankAccountNum;
+	private String accName;
+	private Double balance;
+	public static int lastAssignedNo = 0;
+
+	public Bank(int bankAccountNum, String accName, Double balance) {
+		super();
+		this.bankAccountNum = bankAccountNum;
+		this.accName = accName;
+		this.balance = balance;
+	}
+	
+	public int getBankAccountNum() {
+		return bankAccountNum;
+	}
+	public void setBankAccountNum(int bankAccountNum) {
+		this.bankAccountNum = bankAccountNum;
+	}
+	public String getAccName() {
+		return accName;
+	}
+	public void setAccName(String accName) {
+		this.accName = accName;
+	}
+	public Double getBalance() {
+		return balance;
+	}
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+	public static int getLastAssignedNo() {
+		return lastAssignedNo;
+	}
+	public static void setLastAssignedNo(int lastAssignedNo) {
+		Bank.lastAssignedNo = lastAssignedNo;
+	}
+	@Override
+	public String toString() {
+		return "Bank [bankAccountNum=" + bankAccountNum + ", accName=" + accName + ", balance=" + balance + "]";
+	}
+}
+
+
+package com.htc.exec.myjava;
+
+public interface IBankServiceProvider {
+	public Bank checkAccount(int accountNo);
+	public double getBalance(Bank account);
+	public boolean depositMoney(Bank account, double amount);
+	public boolean depositMoney(Bank fromAccount, Bank toAccount, double amount);
+}
+
+package com.htc.exec.myjava;
+
+import com.htc.exec.myjava.Bank;
+import com.htc.exec.myjava.IBankServiceProvider;
+
+public class BankAccounts implements IBankServiceProvider{
+		Bank[] bankAccount = new Bank[5];{
+		bankAccount[0] = new Bank(1234,"Abc",1000.00);
+		bankAccount[1] = new Bank(2345,"Def",2000.00);
+		bankAccount[2] = new Bank(4567,"Ghi",3000.00);
+		bankAccount[3] = new Bank(5678,"Jkl",5000.00);
+		bankAccount[4] = new Bank(5431,"Mno",1000.00);
+		}
+	@Override
+	public Bank checkAccount(int accountNo) {
+		// TODO Auto-generated method stub
+		for (Bank acc : bankAccount)
+		{
+			if (acc.getBankAccountNum() == accountNo)
+				return acc;
+		}
+		return null;
+	}
+
+	@Override
+	public double getBalance(Bank account) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean depositMoney(Bank account, double amount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean depositMoney(Bank fromAccount, Bank toAccount, double amount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}
+
+package com.htc.exec.myjava;
+import java.util.Scanner;
+public class BankAccountImpl {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BankAccounts account = new BankAccounts();
+		@SuppressWarnings("resource")
+		Scanner s = new Scanner(System.in);
+		System.out.println("Please choose an option:");
+		System.out.println("Enter 1 for checking an account");
+		System.out.println("Enter 2 for getting the balance in an account");
+		System.out.println("Enter 3 for depositing money in an account");
+		System.out.println("Enter 4 for withdrawing money from an account");
+		System.out.println("Enter 5 for transferring money between two accounts");
+		System.out.println("Enter 0 to exit out");
+		int opt = s.nextInt();
+		int acnum;
+		Bank acc;
+		switch (opt){
+		case 1: System.out.println("Please enter the account number");
+				acnum = s.nextInt();
+				acc = account.checkAccount(acnum);
+				if (acc != null ) {
+					System.out.println(acc);
+					break;
+				}
+				else {
+					System.out.println("This account number doesnt exist");
+				}
+		case 2: System.out.println("Please enter the account number");
+				acnum = s.nextInt();
+				acc = account.checkAccount(acnum);
+				if (acc != null ) {
+					System.out.println(acc.getBalance());
+					break;
+				}
+				else {
+					System.out.println("This account number doesnt exist");
+				}
+		case 3: System.out.println("Please enter the account number");
+			acnum = s.nextInt();
+			acc = account.checkAccount(acnum);
+			if (acc != null ) {
+				System.out.println("Please enter the amount to deposit");
+				Double amt = s.nextDouble();
+				Double bal = acc.getBalance()+amt;
+				acc.setBalance(bal);
+				System.out.println("The balance now is "+acc.getBalance());
+				break;
+			}
+			else {
+				System.out.println("This account number doesnt exist");
+			}
+
+		case 4: System.out.println("Please enter the account number");
+			acnum = s.nextInt();
+			acc = account.checkAccount(acnum);
+			if (acc != null ) {
+				System.out.println("Please enter the amount to withdraw");
+				Double amt = s.nextDouble();
+				Double bal = acc.getBalance()-amt;
+				if (bal >= 0) {
+					acc.setBalance(bal);
+					System.out.println("The balance now is "+acc.getBalance());
+				}
+				else {
+					System.out.println("Insufficient balance in account");
+				}
+				break;
+			}
+			else {
+				System.out.println("This account number doesnt exist");
+			}
+
+		case 5: System.out.println("Please enter the account number to transfer money from");
+			acnum = s.nextInt();
+			acc = account.checkAccount(acnum);
+			if (acc != null ) {
+				System.out.println("Please enter the account number to transfer money to");
+				int acnum2 = s.nextInt();
+				Bank acc2 = account.checkAccount(acnum2);
+				if (acc2 != null ) {
+					System.out.println("Please enter the amount to transfer");
+					Double amt = s.nextDouble();
+					Double bal = acc.getBalance()-amt;
+					if (bal >= 0) {
+						acc.setBalance(bal);
+						bal = acc2.getBalance()+amt;
+						acc2.setBalance(bal);
+						System.out.println("Transfer complete");
+						break;
+					}
+					else {
+						System.out.println("Insufficient balance in account for transfer");
+					}
+				}	
+				else {
+					System.out.println("Account to transfer to doesnt exist");
+					break;
+				}
+			}
+			else {
+				System.out.println("This account number doesnt exist");
+			}
+		}	
+	}
+
+}
