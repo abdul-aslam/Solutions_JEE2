@@ -51,7 +51,7 @@ public class EmployeeMainClass {
 			{
 			case 1:
 				
-				DateFormat dateFormatter = new SimpleDateFormat("mm-dd-yyyy");
+				DateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
 				System.out.println("Enter Employee Id");
 				empId = bf.readLine();
 				System.out.println("Enter Employee Name");
