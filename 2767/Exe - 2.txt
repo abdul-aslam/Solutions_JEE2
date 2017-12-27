@@ -1,0 +1,72 @@
+package com.htc.exec.myjava;
+
+public class Project {
+	public String projectId,projectName,projectHead;
+	public int noOfResources;
+
+	public Project() {
+		
+	}
+	public Project(String projectId, String projectName, String projectHead, int noOfResources) {
+		super();
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.projectHead = projectHead;
+		this.noOfResources = noOfResources;
+	}
+
+	public String getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
+	}
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	public String getProjectHead() {
+		return projectHead;
+	}
+	public void setProjectHead(String projectHead) {
+		this.projectHead = projectHead;
+	}
+	public int getNoOfResources() {
+		return noOfResources;
+	}
+	public void setNoOfResources(int noOfResources) {
+		this.noOfResources = noOfResources;
+	}
+	
+}
+
+
+package com.htc.exec.myjava;
+
+public class ProjectImpl {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Project p1=new Project();
+		p1.setProjectId("P01");
+		p1.setProjectName("Project No 1");
+		p1.setProjectHead("Bhavani");
+		p1.setNoOfResources(22);
+
+		System.out.println("Project Id is "+ p1.getProjectId());
+		System.out.println("Project Name is "+ p1.getProjectName());
+		System.out.println("Project Head is "+ p1.getProjectHead()); 
+		System.out.println("Project No of Resources are "+p1.getNoOfResources()); 
+		
+		Project p2=new Project("P02","Project No 2","Ashok",25);
+		System.out.println("");
+		System.out.println("Project Id is "+ p2.getProjectId());
+		System.out.println("Project Name is "+ p2.getProjectName());
+		System.out.println("Project Head is "+ p2.getProjectHead()); 
+		System.out.println("Project No of Resources are "+p2.getNoOfResources()); 
+		
+	}
+
+}

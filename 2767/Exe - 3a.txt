@@ -1,0 +1,72 @@
+package com.htc.exec.myjava;
+import java.io.Serializable;
+	public class StringServiceProvider implements Serializable {
+		private static final long serialVersionUID = 1L;
+		private String stringvar;
+		public StringServiceProvider(String stringvar) {
+			super();
+			this.stringvar = stringvar;
+		}
+		public StringServiceProvider() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+		public String getStringVar() {
+			return stringvar;
+		}
+		public void setStringVar(String stringvar) {
+			this.stringvar = stringvar;
+		}
+		public String revStringVar() {
+			return new StringBuffer(this.stringvar).reverse().toString();	
+		}
+		public boolean srchStringVar(CharSequence substr) {
+			return this.stringvar.contains(substr);
+		}	
+		public String repStringVar(CharSequence substr1,CharSequence substr2) {
+			return this.stringvar.replace(substr1, substr2);			
+			}
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((stringvar == null) ? 0 : stringvar.hashCode());
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			StringServiceProvider other = (StringServiceProvider) obj;
+			if (stringvar == null) {
+				if (other.stringvar != null)
+					return false;
+			} else if (!stringvar.equals(other.stringvar))
+				return false;
+			return true;
+		}
+	}
+
+
+package com.htc.exec.myjava;
+
+public class ImplStringServiceProvider {
+
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+    StringServiceProvider ssp = new StringServiceProvider();
+
+    ssp.setStringVar("Hello");
+    System.out.println(ssp.getStringVar());
+    System.out.println(ssp.revStringVar());
+    System.out.println(ssp.srchStringVar("al"));
+    System.out.println(ssp.repStringVar("ll","pp"));
+	}
+}
