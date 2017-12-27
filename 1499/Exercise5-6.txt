@@ -1,0 +1,288 @@
+package com.sample;
+
+public interface IBankServiceProvider {
+	
+	public BankAccount checkAccount(String accountNo);
+	public double getBalance(BankAccount account);
+	public boolean depositMoney(BankAccount account, double amount) throws InvalidAmountException;;
+	public boolean withdrawMoney(BankAccount account, double amount) throws InsufficientFundException, InvalidAmountException;;
+	public boolean transferMoney(BankAccount fromAccount, BankAccount ToAccount, double amount) throws InsufficientFundException, InvalidAmountException;
+	
+	
+}
+
+
+
+
+
+package com.sample;
+
+public class BankAccount {
+
+	private String accountNo;
+	private String accountName;
+	private double balance;
+	
+	static int lastAssinedNo = 0; 
+	
+	public BankAccount(String accountNo, String accountName) {
+		super();
+		this.accountNo = accountNo;
+		this.accountName = accountName;
+		this.balance = 1000;
+		lastAssinedNo++;
+	}
+	
+	
+	public BankAccount() {
+		super();
+		// TODO Auto-generated constructor stub
+		lastAssinedNo++;
+	}
+
+
+	public String getAccountNo() {
+		return accountNo;
+	}
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+	public String getAccountName() {
+		return accountName;
+	}
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	@Override
+	public String toString() {
+		return "BankAccount [accountNo=" + accountNo + ", accountName="
+				+ accountName + ", balance=" + balance + "]";
+	}
+	
+	public static void main(String[] args){
+		BankAccount BA1 = new BankAccount("12345", "John Account");
+		BankAccount BA2 = new BankAccount("12346", "Smith Account");
+		BA1.balance = 5000.00;
+		BA2.balance = 2000;		
+		
+		System.out.println(BA1);
+		System.out.println(BA2);
+	}
+	
+}
+
+
+
+
+
+
+
+package com.sample;
+
+public class Bank implements IBankServiceProvider {
+
+	public Bank() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	private static BankAccount[] BA;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BA = new BankAccount[3];
+		
+		BA[0] = new BankAccount();
+		BA[0].setAccountNo("12345");
+		BA[0].setAccountName("Smith Account");
+		BA[0].setBalance(5000);
+		
+		BA[1] = new BankAccount();
+		BA[1].setAccountNo("12346");
+		BA[1].setAccountName("John Account");
+		BA[1].setBalance(2000);	
+		
+		BA[2] = new BankAccount();
+		BA[2].setAccountNo("12347");
+		BA[2].setAccountName("Bob Account");
+		BA[2].setBalance(3000);	
+		
+		System.out.println(BankAccount.lastAssinedNo);
+		
+	/* Checks Account Number */
+		String accountNo1 = "12345";
+		String accountNo2 = "12349";
+		
+		Bank BK = new Bank();
+	
+		if (BK.checkAccount(accountNo1) != null) {
+			System.out.println("Account Number: " + accountNo1 + " existed");
+		} else {
+			System.out.println("Account Number: " + accountNo1 + " not existed");
+		}
+		
+		if (BK.checkAccount(accountNo2) != null) {
+			System.out.println("Account Number: " + accountNo2 + " existed");
+		} else {
+			System.out.println("Account Number: " + accountNo2 + " not existed");
+		}
+	
+	/* Get the account balance */
+		
+		double balance = BK.getBalance(BA[2]);
+		System.out.println ("Bank Account Balance for the account : " + BA[2].getAccountNo() + " is " + balance);
+
+	/* Deposit money */
+		try {
+			boolean accountExist1 = BK.depositMoney(BA[2], 3000.00);
+			if (accountExist1) {
+				System.out.println ("Bank Account Balance for the account : " + BA[2].getAccountNo() + " after deposit is " + BA[2].getBalance());
+			} else {
+				System.out.println("Bank Account does not exist");
+			}
+		} catch (InvalidAmountException excep2) {
+			System.out.println(excep2);
+		}	
+		
+		
+	/* Withdraw money */
+		try {
+			boolean accountExist2 = BK.withdrawMoney (BA[2], 2000);
+			if (accountExist2) {
+				System.out.println ("Bank Account Balance for the account : " + BA[2].getAccountNo() + " after withdraw is " + BA[2].getBalance());
+			} else {
+				System.out.println("Bank Account does not exist");
+			}
+		} catch (InsufficientFundException excep1) {
+			System.out.println(excep1);
+		} catch (InvalidAmountException excep2) {
+			System.out.println(excep2);
+		}				
+		
+	/* transfer money one account to another account */
+		try {
+			boolean accountExist3 = BK.transferMoney(BA[2], BA[1], 1000);
+
+			if (accountExist3) {
+				System.out.println ("Bank Account Balance for the account : " + BA[2].getAccountNo() + " after trasfer is " + BA[2].getBalance());
+				System.out.println ("Bank Account Balance for the account : " + BA[1].getAccountNo() + " after trasfer is " + BA[1].getBalance());
+			} else {
+				System.out.println("Bank Account does not exist");
+			}					
+		} catch (InsufficientFundException excep1) {
+			System.out.println(excep1);
+		} catch (InvalidAmountException excep2) {
+			System.out.println(excep2);
+		}	
+	}
+
+	@Override
+	public BankAccount checkAccount(String accountNo) {
+		// TODO Auto-generated method stub
+		
+		for (BankAccount element: BA) {
+			if (element.getAccountNo() == accountNo) {
+				return element;
+			}
+		}
+		return null;
+	}
+
+
+	@Override
+	public double getBalance(BankAccount account) {
+		// TODO Auto-generated method stub
+		
+		if (checkAccount(account.getAccountNo()) != null) {
+			return account.getBalance();
+		} 
+		return 0;
+	}
+
+
+
+	@Override
+	public boolean depositMoney(BankAccount account, double amount) throws InvalidAmountException {
+		// TODO Auto-generated method stub
+	
+		double balance;
+
+		if (amount < 0) {
+			throw new InvalidAmountException("Amount is Invalid for deposit money :" + amount);
+		}		
+		
+		if (checkAccount(account.getAccountNo()) != null) {
+			balance = account.getBalance() + amount;
+			account.setBalance(balance);
+			return true;
+		} 
+		
+		return false;
+	}
+
+
+
+	@Override
+	public boolean withdrawMoney(BankAccount account, double amount) throws InsufficientFundException, InvalidAmountException {
+		// TODO Auto-generated method stub
+		
+		if (account.getBalance() < amount) {
+			throw new InsufficientFundException("No sufficient Fund to withdraw money from account :" + account.getAccountNo());
+		}
+
+		if (amount < 0) {
+			throw new InvalidAmountException("Amount is Invalid for withdraw money :" + amount);
+		}
+		
+		if (checkAccount(account.getAccountNo()) != null) {
+			account.setBalance(account.getBalance() - amount);
+			return true;
+		} 
+		
+		return false;
+	}
+
+
+
+	@Override
+	public boolean transferMoney(BankAccount fromAccount,
+			BankAccount ToAccount, double amount) throws InsufficientFundException, InvalidAmountException {
+		// TODO Auto-generated method stub
+
+		if (fromAccount.getBalance() < amount) {
+			throw new InsufficientFundException("No sufficient Fund to transfter money from account :" + fromAccount.getAccountNo());
+		}
+
+		if (amount < 0) {
+			throw new InvalidAmountException("Amount is Invalid for transfer money:" + amount);
+		}
+		
+		if ((checkAccount(fromAccount.getAccountNo()) != null) &
+			(checkAccount(ToAccount.getAccountNo()) != null))	{
+			fromAccount.setBalance(fromAccount.getBalance() - amount);
+			ToAccount.setBalance(ToAccount.getBalance() + amount);
+			return true;
+		}
+		return false;
+	}
+}
+
+class InsufficientFundException extends Exception {
+	InsufficientFundException(String insufficientFund) {
+		super(insufficientFund);
+	}
+}
+
+class InvalidAmountException extends Exception {
+	InvalidAmountException(String invalidAmt) {
+		super(invalidAmt);
+	}
+}
+

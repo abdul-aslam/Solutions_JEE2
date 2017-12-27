@@ -1,0 +1,241 @@
+package com.sample;
+
+public interface ICompanyserviceprovider {
+	public boolean addEmployee(String empID, Employee e);
+	public Employee getEmployee(String empID);
+	public boolean updateEmployeeSalary(String empID, double amount);
+	public boolean deleteEmployee(String empID);
+	
+}
+
+
+
+package com.sample;
+
+public class Employee {
+
+	private String empID;
+	private String empName;
+	private String empGender;
+	private double empSalary;
+
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Employee(String empName, String empGender, double empSalary) {
+		super();
+//		this.empID = empID;
+		this.empName = empName;
+		this.empGender = empGender;
+		this.empSalary = empSalary;
+	}
+
+
+	public String getEmpID() {
+		return empID;
+	}
+	public void setEmpID(String empID) {
+		this.empID = empID;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public String getEmpGender() {
+		return empGender;
+	}
+	public void setEmpGender(String empGender) {
+		this.empGender = empGender;
+	}
+	public double getEmpSalary() {
+		return empSalary;
+	}
+	public void setEmpSalary(double empSalary) {
+		this.empSalary = empSalary;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((empGender == null) ? 0 : empGender.hashCode());
+		result = prime * result + ((empID == null) ? 0 : empID.hashCode());
+		result = prime * result + ((empName == null) ? 0 : empName.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(empSalary);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (empGender == null) {
+			if (other.empGender != null)
+				return false;
+		} else if (!empGender.equals(other.empGender))
+			return false;
+		if (empID == null) {
+			if (other.empID != null)
+				return false;
+		} else if (!empID.equals(other.empID))
+			return false;
+		if (empName == null) {
+			if (other.empName != null)
+				return false;
+		} else if (!empName.equals(other.empName))
+			return false;
+		if (Double.doubleToLongBits(empSalary) != Double
+				.doubleToLongBits(other.empSalary))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Emplyoee [empID=" + empID + ", empName=" + empName
+				+ ", empGender=" + empGender + ", empSalary=" + empSalary + "]";
+	}
+	
+	
+}
+
+
+
+
+
+package com.sample;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class HTCGlobalServices implements ICompanyserviceprovider {
+
+	private String companyID;
+	private String address;
+	private Map<String, Employee> employeeMap = new HashMap<>();
+	
+	public HTCGlobalServices() {
+		// TODO Auto-generated constructor stub
+		
+	}
+	
+	public HTCGlobalServices(String companyID, String address) {
+		super();
+		this.companyID = companyID;
+		this.address = address;
+	}
+
+
+	public String getCompanyID() {
+		return companyID;
+	}
+
+	public void setCompanyID(String companyID) {
+		this.companyID = companyID;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Map<String, Employee> getEmployeeMap() {
+		return employeeMap;
+	}
+
+	public void setEmployeeMap(Map<String, Employee> employeeMap) {
+		this.employeeMap = employeeMap;
+	}
+
+	@Override
+	public boolean addEmployee(String empID, Employee e) {
+		// TODO Auto-generated method stub
+		e.setEmpID(empID);
+		employeeMap.put(empID, e);
+		
+		return true;
+	}
+
+	@Override
+	public Employee getEmployee(String empID) {
+		// TODO Auto-generated method stub
+		
+		if (employeeMap.containsKey(empID)) {
+			return employeeMap.get(empID);
+		}
+		return null;
+	}
+
+	@Override
+	public boolean updateEmployeeSalary(String empID, double amount) {
+		// TODO Auto-generated method stub
+		if (employeeMap.containsKey(empID)) {
+			Employee e1 = employeeMap.get(empID);
+			e1.setEmpSalary(50000);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteEmployee(String empID) {
+		// TODO Auto-generated method stub
+		if (employeeMap.containsKey(empID)) {
+			employeeMap.remove(empID);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public void printAllEmployee() {
+		for (Map.Entry<String, Employee> emp: employeeMap.entrySet() ) {
+			System.out.println(emp);
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Employee emp1 = new Employee ("AAA", "M", 10000);
+		Employee emp2 = new Employee ("BBB", "F", 20000);
+		Employee emp3 = new Employee ("CCC", "M", 30000);
+		Employee emp4 = new Employee ("DDD", "M", 40000);
+		
+		HTCGlobalServices HTC = new HTCGlobalServices("HTC Global Services", "3270 Big Beaver Rd, Troy, MI 48084");
+
+		HTC.addEmployee("E01", emp1);
+		HTC.addEmployee("E02", emp2);
+		HTC.addEmployee("E03", emp3);
+		HTC.addEmployee("E04", emp4);
+		
+		System.out.println("Employee details before operation:");
+		HTC.printAllEmployee();
+		
+		System.out.println("Employee: E01 details \n" + HTC.getEmployee("E01"));
+		
+		HTC.updateEmployeeSalary("E02", 50000);
+		
+		HTC.deleteEmployee("E04");
+		
+		System.out.println("Employee details after operation:");
+		HTC.printAllEmployee();
+	}
+
+}

@@ -1,0 +1,182 @@
+package com.sample;
+
+public class Product implements Comparable <Product> {
+
+	private String productID;
+	private String productDesc;
+	private double productPrice;
+	
+	
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Product(String productID, String productDesc, double productPrice) {
+		super();
+		this.productID = productID;
+		this.productDesc = productDesc;
+		this.productPrice = productPrice;
+	}
+
+
+	public String getProductID() {
+		return productID;
+	}
+
+
+	public void setProductID(String productID) {
+		this.productID = productID;
+	}
+
+
+	public String getProductDesc() {
+		return productDesc;
+	}
+
+
+	public void setProductDesc(String productDesc) {
+		this.productDesc = productDesc;
+	}
+
+
+	public double getProductPrice() {
+		return productPrice;
+	}
+
+
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	
+	
+	@Override
+	public String toString() {
+		return "Product [productID=" + productID + ", ProductDesc="
+				+ productDesc + ", productPrice=" + productPrice + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+
+		int result = 1;
+		result = prime * result
+				+ ((productDesc == null) ? 0 : productDesc.hashCode());
+		result = prime * result
+				+ ((productID == null) ? 0 : productID.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(productPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if (productDesc == null) {
+			if (other.productDesc != null)
+				return false;
+		} else if (!productDesc.equals(other.productDesc))
+			return false;
+		if (productID == null) {
+			if (other.productID != null)
+				return false;
+		} else if (!productID.equals(other.productID))
+			return false;
+		if (Double.doubleToLongBits(productPrice) != Double
+				.doubleToLongBits(other.productPrice))
+			return false;
+		return true;
+	}
+
+
+	@Override
+	public int compareTo(Product o) {
+		// TODO Auto-generated method stub
+		
+		return ((Double) getProductPrice()).compareTo(o.getProductPrice());
+	}
+	
+	
+	
+}
+
+
+
+package com.sample;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class Store implements Comparator <Product> {
+	private List<Product> list1;
+
+	public List<Product> getList1() {
+		return list1;
+	}
+
+	public void setList1(List<Product> list1) {
+		this.list1 = list1;
+	}
+
+	public Store(List<Product> list1) {
+		super();
+		this.list1 = list1;
+	}
+	
+	public void sortedList () {
+		System.out.println("List of products before sort:");
+		for (Product element: list1) {
+			System.out.println(element);
+		}
+
+		Collections.sort(list1);
+		
+		System.out.println("List of products after sort as per price:");
+		for (Product element: list1) {
+			System.out.println(element);
+		}		
+		
+
+	}
+
+	public static void main(String[] args) {
+		Product p1 = new Product("1","Brush", 30.00);
+		Product p2 = new Product("2","Paste", 10.00);
+		Product p3 = new Product("3","Powder", 40.00);
+		
+		List<Product> prodList = new ArrayList<>();
+		
+		prodList.add (p1);
+		prodList.add (p2);
+		prodList.add (p3);
+		
+		Store s1 = new Store(prodList);
+		s1.sortedList();
+		
+		Collections.sort(prodList, s1);
+		System.out.println("List of products after sort as per Description:");
+		for (Product element: prodList) {
+			System.out.println(element);
+		}			
+	}
+
+	@Override
+	public int compare(Product o1, Product o2) {
+		// TODO Auto-generated method stub
+		return (o1.getProductDesc()).compareTo(o2.getProductDesc());
+	}
+}
