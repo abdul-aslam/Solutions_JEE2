@@ -8,11 +8,7 @@ public class HtcGlobalMainClass {
 
 	public static void main(String[] args) {
 
-		int crudOption = 0 ;
-		String empId = "";
-		String empName = "";
-		int empAge = 0;
-		double empSalary = 0.0;
+		
 		boolean continueOption = true;
 
 		HashMap<String,Employee> empHash = new HashMap<String,Employee>();
@@ -25,15 +21,21 @@ public class HtcGlobalMainClass {
 		empHash.put("E200", anu);
 		empHash.put("E300", karthi);
 
-		HTCGlobalServices htcDetails = new HTCGlobalServices("HTC","Big Beaver Road",null);
+		HtcGlobalServices htcDetails = new HtcGlobalServices("HTC","Big Beaver Road",null);
 
 		htcDetails.setEmpHashMap(empHash);
 
 
 		try
 		{
+			
 			while (continueOption)
 			{
+				int crudOption = 0 ;
+				String empId = "";
+				String empName = "";
+				int empAge = 0;
+				double empSalary = 0.0;
 				System.out.println(" CRUD Operation on Employee HashMap");
 				System.out.println();
 				System.out.println("1. Add employee to the HashMap");
