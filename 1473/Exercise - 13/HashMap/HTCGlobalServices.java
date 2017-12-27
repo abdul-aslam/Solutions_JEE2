@@ -3,7 +3,7 @@ package com.htc.employeehashmap;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class HTCGlobalServices  implements IEmployeeCrud{
+public class HtcGlobalServices  implements IEmployeeCrud{
 	
 	private String companyId;
 	private String address;
