@@ -1,0 +1,11 @@
+package com.htc.Day10.main;
+
+public interface IBankServiceProvider {
+
+	Boolean add(BankAccount bankaccounts);
+	BankAccount checkAccount(String accountNo);
+	double  getBalance(String accountNo);
+	Boolean depositMoney(String accountNo,double amount);
+	Boolean withdrawMoney(String accountNo,double amount) throws  InsufficientFundException ;
+	Boolean transferMoney(String fromaccountNo1, String toaccountNo2,double amount);
+}
