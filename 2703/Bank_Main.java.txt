@@ -1,0 +1,255 @@
+package Assgmt.main;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import Assgmt.Entity.AccountnotFoundexception;
+import Assgmt.Entity.BankAccount;
+import Assgmt.Entity.IBankServiceProvider;
+import Assgmt.Entity.InsufficientFundException;
+import Assgmt.Entity.InvalidAmountException;
+
+public class Bank implements IBankServiceProvider
+{
+	public List<BankAccount> bankaccounts;
+	public static int lastassignedno;
+	
+	public Bank(List<BankAccount> bankaccounts) {
+		super();
+		this.bankaccounts = bankaccounts;
+	}
+
+
+	static 
+	{
+	 lastassignedno = 100000;
+	}
+	
+	
+	
+	public Bank() {
+		super();
+		bankaccounts = new ArrayList<>();
+
+		
+	}
+	
+
+	
+	
+	@Override
+	
+	public BankAccount CheckAccount(String Accountno) throws AccountnotFoundexception 
+	{
+		System.out.println(Accountno);
+		System.out.println(bankaccounts);
+		for (BankAccount bankAccount : bankaccounts) 	
+		{
+			if (bankAccount.getAccountno().equalsIgnoreCase(Accountno))
+				return bankAccount;
+		}
+		
+		throw new AccountnotFoundexception( "Account No not found; Kindly provide the correct account no");
+		
+	}
+	
+		
+
+		
+	@Override
+     public double getbalance(BankAccount accountno) throws AccountnotFoundexception
+	{	
+		double balance = 0.0;
+		
+		this.CheckAccount(accountno.getAccountno());
+	    balance = accountno.getBalance();
+	    return balance;
+	}
+	  
+	@Override
+	public boolean depositmoney(BankAccount Accountno, double amount) throws AccountnotFoundexception, InvalidAmountException
+	{
+		boolean amountdeposited = false;
+		
+		this.CheckAccount(Accountno.getAccountno());
+		
+		if (amount > 0 )
+		{
+			amount = amount + Accountno.getBalance();
+			Accountno.setBalance(amount);
+			amountdeposited = true;
+			
+		}
+		else
+		throw new InvalidAmountException ("Deposit Amount should be greater than Zero");
+		
+		return amountdeposited;
+	}
+
+	@Override
+	public boolean withdrawmoney(BankAccount Accountno, double Amount) throws AccountnotFoundexception, InsufficientFundException {
+		boolean amountwithdrawn = false;
+		this.CheckAccount(Accountno.getAccountno());
+		
+		
+		if( Amount > 0 )
+		{
+		  Amount = Accountno.getBalance() - Amount;
+		  System.out.println(Amount);
+		  if(Amount > 0) 
+		  {
+			  Accountno.setBalance(Amount);
+		      amountwithdrawn = true;
+			  
+		  }
+		  else	 
+			  throw new InsufficientFundException("Insufficient Balance to withdraw"); 
+		  
+		}
+		return amountwithdrawn;
+	}
+
+
+	@Override
+	public boolean transfermoney(BankAccount fromaccountno, BankAccount Toaccount, double money)
+			throws AccountnotFoundexception, InvalidAmountException, InsufficientFundException 
+	{
+		boolean transferreddone =false;
+		this.CheckAccount(fromaccountno.getAccountno());
+		this.CheckAccount(Toaccount.getAccountno());
+		double tempmoney = 0.0;
+		if (money > 0)
+		{
+			tempmoney = fromaccountno.getBalance() - money;
+			if(tempmoney < 0) 
+				  throw new InsufficientFundException("Insufficient Balance to withdraw");
+			  else
+			  {
+				  Toaccount.setBalance(tempmoney);
+				  transferreddone = true;
+				  
+			  }
+			
+		}
+		return transferreddone;
+		
+	}
+			
+
+		
+
+
+@SuppressWarnings({ "resource", "static-access" })
+public static void main(String arg[])
+  
+  {
+	Scanner input = new Scanner(System.in);
+	
+	
+	
+	/* get the account holder name and store it in the list BankAccount*/
+	
+	String Accountno = "";
+	double money_to_deposit=0.0;
+	double money_to_withdrawn=0.0;
+	boolean addaccount = true;
+    String accountname = " ";
+	double initbalance = 5000.0;
+	Bank Bank_obj = new Bank();
+	
+	
+	while(addaccount)
+	{
+			accountname = input.nextLine();
+			if(accountname.equals(""))	
+				addaccount = false;
+			else
+			{
+			System.out.println("test loading");
+			
+			Bank_obj.bankaccounts.add(new BankAccount(Integer.toString(Bank_obj.lastassignedno++),accountname, initbalance));
+			}
+		    accountname = "";	
+	}
+	
+	/* display the bank accounts and account holder names */
+	for (BankAccount bankAccount : Bank_obj.bankaccounts) 
+	{
+	 System.out.println(bankAccount);	
+	}
+	
+	/* Bank account object */
+    
+    BankAccount Bank_Account = new BankAccount();
+    
+    try
+    {
+    	System.out.println("Ënter the Account no to verify :");
+    	Accountno = "";
+        Accountno = input.nextLine();
+    	System.out.println(Accountno);
+    	Bank_Account = Bank_obj.CheckAccount(Accountno);
+    	if(Bank_Account != null )
+    	{
+    		System.out.println("Account is valid");
+    	}
+    	else
+    		System.out.println("Bank_Account no is not valid");
+    	System.out.println(Bank_Account);
+    	
+    	System.out.printf("The balance in the existed account:" + Bank_Account.getBalance());
+    	
+    	System.out.println("\n enter the amount to be deposited:");
+    	
+    	money_to_deposit = input.nextDouble();
+    	
+    	System.out.printf("money before deposit:" + Bank_Account.getBalance());
+    	
+    	if(Bank_obj.depositmoney(Bank_Account,money_to_deposit)) 
+    	{
+    	 System.out.println("Money deposited successfully");
+    	 System.out.printf("money after deposit:" + Bank_Account.getBalance());
+    	 }
+    	else
+    		System.out.println("Amount not deposited");
+    	
+    	System.out.println("enter the amount to be Withdrawn:");
+    	
+    	money_to_withdrawn = input.nextDouble();
+    	
+    	System.out.printf("money before withdraw:"+ Bank_Account.getBalance());
+    	
+    	if(Bank_obj.withdrawmoney(Bank_Account,money_to_withdrawn)) 
+    	{
+    	 System.out.println("Money withdrawn successfully");
+    	 System.out.printf("money after withdraw:"+ Bank_Account.getBalance());
+    	 }
+    	else
+    		System.out.println("cant withdraw the money ");
+    }    	
+    	catch(AccountnotFoundexception a)
+		{
+			System.out.println(a.toString());
+		}
+		catch(InsufficientFundException i)
+		{
+			System.out.println(i.toString());
+		}
+		catch(InvalidAmountException d)
+		{
+			System.out.println(d.toString());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
+    	
+   
+  
+    
+	
+  
+}
+
+}

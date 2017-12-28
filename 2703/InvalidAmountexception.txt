@@ -1,0 +1,28 @@
+package Assgmt.Entity;
+
+@SuppressWarnings("serial")
+public class InvalidAmountException extends Exception {
+	
+	public String Invalidamount;
+
+	public InvalidAmountException() {
+		super();
+		 this.Invalidamount= " Amount is invalid, Provide the correct amount";
+		 
+	}
+
+	public InvalidAmountException(String invalidamount) {
+		super();
+		Invalidamount = invalidamount;
+	}
+
+	@Override
+	public String toString() {
+		return "InvalidAmountException [Invalidamount=" + Invalidamount + "]";
+	}
+	
+	
+	
+	
+
+}

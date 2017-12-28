@@ -1,0 +1,90 @@
+package Assgmt.Entity;
+
+public class BankAccount {
+	
+	
+	public  String accountno;
+	private String accountname;
+	private  double balance;
+	
+	public BankAccount() {
+		
+		super();
+		System.out.printf("Bankaccount invoked");
+		
+		// TODO Auto-generated constructor stub
+	}
+	public BankAccount(String accountno,String accountname, double balance) {
+		super();
+		this.accountno = accountno;
+		this.accountname = accountname;
+		this.balance = balance;
+		
+
+	}
+	public String getAccountno() {
+		return accountno;
+	}
+	public void setAccountno(String accountno) {
+		this.accountno = accountno;
+	}
+	public String getAccountname() {
+		return accountname;
+	}
+	public void setAccountname(String accountname) {
+		this.accountname = accountname;
+	}
+	
+	
+	public double getBalance()  
+	{
+	   		return balance;
+	
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	@Override
+	public String toString() {
+		return "BankAccount [accountno=" + accountno + ", accountname=" + accountname + ", balance=" + balance + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((accountname == null) ? 0 : accountname.hashCode());
+		result = prime * result + ((accountno == null) ? 0 : accountno.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(balance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BankAccount other = (BankAccount) obj;
+		if (accountname == null) {
+			if (other.accountname != null)
+				return false;
+		} else if (!accountname.equals(other.accountname))
+			return false;
+		if (accountno == null) {
+			if (other.accountno != null)
+				return false;
+		} else if (!accountno.equals(other.accountno))
+			return false;
+		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
+			return false;
+		return true;
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,29 @@
+package Assgmt.Entity;
+
+@SuppressWarnings("serial")
+public class InsufficientFundException extends Exception {
+	public String insufficientfund;
+	
+
+	public InsufficientFundException() {
+		super();
+		this.insufficientfund = "no Sufficient funds / Kindly check your account balance";
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public InsufficientFundException(String insufficientfund) {
+		super();
+		this.insufficientfund = insufficientfund;
+	}
+
+
+	@Override
+	public String toString() {
+		return "InsufficientFundException [insufficientfund=" + insufficientfund + "]";
+	}
+	
+   
+
+	
+}

@@ -1,0 +1,23 @@
+package Assgmt.Entity;
+
+@SuppressWarnings(serial)
+public class AccountnotFoundexception extends Exception {
+	public String invalidaccount;
+	
+
+	public AccountnotFoundexception() {
+		super();
+		this.invalidaccount = Invalid Account; Kindly check the account no;
+		 TODO Auto-generated constructor stub
+	}
+
+
+	public AccountnotFoundexception(String insufficientfund) {
+		super();
+		this.invalidaccount = insufficientfund;
+	}
+	
+   
+
+	
+}

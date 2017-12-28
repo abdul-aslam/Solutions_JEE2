@@ -1,0 +1,12 @@
+package Assgmt.Entity;
+
+public interface IBankServiceProvider {
+
+	public BankAccount CheckAccount(String Accountno) throws AccountnotFoundexception;
+	public double getbalance(BankAccount Accountno) throws AccountnotFoundexception;
+	public boolean depositmoney(BankAccount Accountno, double Amount) throws AccountnotFoundexception,InvalidAmountException;
+	public boolean withdrawmoney(BankAccount Accountno, double Amount) throws AccountnotFoundexception,InvalidAmountException,InsufficientFundException;
+	public boolean transfermoney(BankAccount fromaccountno, BankAccount Toaccount, double money) throws AccountnotFoundexception,InvalidAmountException,InsufficientFundException;
+	
+	
+}
