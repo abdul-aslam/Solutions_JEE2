@@ -29,10 +29,11 @@ public class Batch {
 	public Trainee[] getTraineeField() {
 		return traineeField;
 	}
-	public Trainee setTraineeField(Trainee[] traineeField) {
+	public void setTraineeField(Trainee[] traineeField) {
 		this.traineeField = traineeField;
+	}
 		
-		Trainee GetTrainee(int id)
+		public Trainee GetTrainee(int id)
 		{
 			Trainee objtraine=new Trainee(1,"bob",(int) 3098259758L,"bob@htcinc.com",50);
 			return objtraine;
@@ -47,4 +48,4 @@ public class Batch {
 	
 	
 	
-}
+
