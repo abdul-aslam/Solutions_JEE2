@@ -1,0 +1,98 @@
+package com.htc.Day10.main;
+
+import java.util.ArrayList;
+
+import java.util.List;
+
+public class Bank implements IBankServiceProvider {
+List<BankAccount> accounts = new ArrayList<>();
+	@Override
+	public Boolean add(BankAccount bankaccounts) {
+		// TODO Auto-generated method stub
+		Boolean flag = false;
+		accounts.add(bankaccounts);
+		flag = true;
+		return flag;
+	}
+
+	@Override
+	public BankAccount checkAccount(String accountNo) {
+		// TODO Auto-generated method stub
+		BankAccount result = null;
+		for (BankAccount e: accounts) {
+			if (e.getAccountNo().equals(accountNo)) {
+				result =e;
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public double getBalance(String accountNo) {
+		double balance = 0.0;
+		for (BankAccount e: accounts) {
+			if (e.getAccountNo().equals(accountNo) ) {
+				balance = e.getAccountBalance();
+			}
+		}
+		return balance;
+	}
+
+	@Override
+	public Boolean depositMoney(String accountNo ,double amount) {
+		// TODO Auto-generated method stub
+		double balance = 0.0;
+		for (BankAccount e: accounts) {
+			if (e.getAccountNo().equals(accountNo)) {
+				balance =e.getAccountBalance()+ amount;
+				e.setAccountBalance(balance);		}
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean withdrawMoney(String accountNo, double amount) throws  InsufficientFundException {
+		double balance1 = 0.0;
+		for (BankAccount e : accounts) {
+			if (e.getAccountNo().equals(accountNo)) {
+			
+				if (e.getAccountBalance() > amount) {
+					balance1 = e.getAccountBalance() ;
+					balance1 -= amount;
+					System.out.println("balance"+balance1+"   "+e.getAccountBalance()+" "+amount);
+					e.setAccountBalance(balance1);
+				}
+				else {
+				double need = amount-e.getAccountBalance();
+				throw new InsufficientFundException(need);
+			}
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean transferMoney(String fromaccountNo1, String toaccountNo2, double  amount) {
+		double balance1 = 0.0;
+		double balance2 = 0.0;
+		for (BankAccount e1 : accounts) {
+			if (e1.getAccountNo().equals(fromaccountNo1)) {
+				for (BankAccount e2 :accounts) {
+					if (e2.getAccountNo().equals(toaccountNo2)) {
+						balance1 = e1.getAccountBalance() ;
+						balance1 -= amount;
+						balance2 = e2.getAccountBalance() ;
+						System.out.println("balance2 "+balance2);
+						balance2 = balance2+ amount;
+						e2.setAccountBalance(balance2);
+						System.out.println("balance1 "+balance1+" balance2  "+balance2 +"amount "+amount);
+						e1.setAccountBalance(balance1);
+					}	
+				}
+				
+			}
+		}
+		return true;
+	}
+
+}
