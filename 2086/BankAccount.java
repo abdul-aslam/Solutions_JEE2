@@ -2,8 +2,19 @@ package com.htc.trainingexcerise.week1;
 /* Week1 - Exercise question 4 */
 public class BankAccount {
 
-	public String accountNo,accountName;
-	public double balance=1000;
+	private String accountNo,accountName;
+	private double balance=1000;
+	
+	public BankAccount() {
+		super();
+	}
+	
+	public BankAccount(String accountNo, String accountName) {
+		super();
+		this.accountNo = accountNo;
+		this.accountName = accountName;
+		
+	}
 	
 	public String getAccountNo() {
 		return accountNo;
@@ -29,16 +40,8 @@ public class BankAccount {
 		this.balance = balance;
 	}
 
-	public BankAccount() {
-		super();
-	}
 	
-	public BankAccount(String accountNo, String accountName) {
-		super();
-		this.accountNo = accountNo;
-		this.accountName = accountName;
-		
-	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

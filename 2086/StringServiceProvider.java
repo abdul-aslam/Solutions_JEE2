@@ -11,17 +11,16 @@ public class StringServiceProvider {
 		
 		System.out.println("Non Static Reverse--  " +reverseString);
 	}
-	public void linearSearch(String givenString) {
-		char[] givenStringCharArray =givenString.toCharArray();
+	public void linearSearch(String userString, String srchString) {
+		
 		boolean flag=false;
-		for(char c:givenStringCharArray)
-		{
-			if(String.valueOf(c).equals(givenString))
+		
+			if(String.valueOf(userString).contains(srchString))
 			{
 				System.out.println("Non Static --  Word present");
 				flag=true;
 			}
-		};
+		
 		if(flag==false)System.out.println("Non Static --  Word not present");
 		
 	}
@@ -35,17 +34,14 @@ public class StringServiceProvider {
 		System.out.println("Static --  " +reverseString);
 		
 	}
-	public static void linearSearchStatic(String givenString) {
-		char[] givenStringCharArray =givenString.toCharArray();
+	public static void linearSearchStatic(String userString, String srchString) {
 		boolean flag=false;
-		for(char c:givenStringCharArray)
+		
+		if(String.valueOf(userString).contains(srchString))
 		{
-			if(String.valueOf(c).equals(givenString))
-			{
-				System.out.println(" Static --  Word present");
-				flag=true;
-			}
-		};
+			System.out.println("Non Static --  Word present");
+			flag=true;
+		}
 		if(flag==false)System.out.println(" Static --  Word not present");
 		
 	}
@@ -60,14 +56,16 @@ public class StringServiceProvider {
 		
 		StringServiceProvider ssp=new StringServiceProvider();
 		
-		String userString = sStr.next();
+		String userString = sStr.nextLine();
+		//String[] userStringArray=;
+		
 		ssp.reverseString(userString);
 		StringServiceProvider.reverseStringStatic(userString);
 		
 		System.out.println("Please enter a string to do search in above given string");
 		String srchStr = sStr.next();
-		ssp.linearSearch(srchStr);
-		StringServiceProvider.linearSearchStatic(srchStr);
+		ssp.linearSearch(userString,srchStr);
+		StringServiceProvider.linearSearchStatic(userString,srchStr);
 		
 		System.out.println("Please enter a string to do search");
 		String srchString = sStr.next();
