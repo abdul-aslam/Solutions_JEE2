@@ -1,0 +1,56 @@
+public class StringServiceProvider {
+
+public String reverseString(String S) {
+  
+//use the loop to print String in reversa order
+		String rev ="";
+		int len =S.length();
+		for (int i = len - 1; i >= 0; i--) {
+			rev = rev + S.charAt(i);
+		}
+		return rev;
+ }
+
+//linear search
+ public int linearSearch(String word, char ch) {
+	  
+	 		return word.indexOf(ch);
+}
+
+ 
+ public String replaceString (String word, String replaceString, String replaceOfString ) {
+	  
+		return word.replace(replaceString, replaceOfString);
+}
+ 	
+}
+
+-----------------
+package com.htc.excercise;
+
+public class StringService {
+
+	public static void main(String[] args) {
+
+		StringServiceProvider client = new StringServiceProvider();   
+		String str = "HTC GLOBAL SERVICES";
+		String rstr = client.reverseString(str);
+		
+		System.out.println("The reverse String of " +str +"is :"+rstr);
+	
+//search the position of a character in string
+		
+		int ls =client.linearSearch(str, 'T');
+		
+		System.out.println("The T is at "+ ls +" position  in word "+str);
+		
+		
+//replace a string with different value 
+		String replString=client.replaceString(str, "HTC", "HI-TECH");
+		
+		System.out.println("The final String after replace " +replString);
+	}
+
+}
+
+
