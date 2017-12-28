@@ -2,10 +2,10 @@ package com.htc.trainingexcerise.week1;
 /* Week1 - Exercise question 2 */
 public class Project {
 
-	int projectId;
-	String projectName;
-	String projectHead;
-	int noOfResources;
+	private int projectId;
+	private String projectName;
+	private String projectHead;
+	private int noOfResources;
 	
 	public int getProjectId() {
 		return projectId;
@@ -39,6 +39,12 @@ public class Project {
 		this.noOfResources = noOfResources;
 	}
 
+	@Override
+	public String toString() {
+		return "Project [projectId=" + projectId + ", projectName=" + projectName + ", projectHead=" + projectHead
+				+ ", noOfResources=" + noOfResources + "]";
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -47,7 +53,8 @@ public class Project {
 		projectObj.setProjectName("Java_Banking");
 		projectObj.setProjectHead("XXX");
 		projectObj.setNoOfResources(20);
-		System.out.println(projectObj.getProjectId()+" "+projectObj.getProjectName()+" "+projectObj.getProjectHead()+" "+projectObj.getNoOfResources());
+		System.out.println(projectObj.toString());
+		//System.out.println(projectObj.getProjectId()+" "+projectObj.getProjectName()+" "+projectObj.getProjectHead()+" "+projectObj.getNoOfResources());
 		
 	}
 
